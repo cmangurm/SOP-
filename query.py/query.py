@@ -2,13 +2,19 @@ from llama_index.core import StorageContext, load_index_from_storage
 from llama_index.llms.ollama import Ollama
 from llama_index.vector_stores.chroma import ChromaVectorStore
 import chromadb
+import os
 
 # Set up persistent storage
 PERSIST_DIR = "db"
 
+# Check if database exists
+if not os.path.exists(PERSIST_DIR):
+    print("Database not found. Please run ingest.py first.")
+    exit()
+
 # Set up Chroma
 chroma_client = chromadb.PersistentClient(path=PERSIST_DIR)
-chroma_collection = client.get_or_create_collection("sop_documents")
+chroma_collection = chroma_client.get_or_create_collection("sop_documents")
 vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
 storage_context = StorageContext.from_defaults(vector_store=vector_store)
 

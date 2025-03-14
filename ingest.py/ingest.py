@@ -18,6 +18,12 @@ if not os.path.exists(DATA_DIR):
 # Load documents
 print("Loading documents...")
 documents = SimpleDirectoryReader(DATA_DIR).load_documents()
+
+# Check if any documents were found
+if len(documents) == 0:
+    print(f"No documents found in {DATA_DIR}. Please add your SOP documents there.")
+    exit()
+
 print(f"Loaded {len(documents)} documents")
 
 # Set up persistent storage
