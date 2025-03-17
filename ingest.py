@@ -19,7 +19,7 @@ def main():
     
     # Load documents
     print("Loading documents...")
-    documents = SimpleDirectoryReader(DATA_DIR).load_documents()
+    documents = SimpleDirectoryReader(input_dir=DATA_DIR).load_data()
     
     # Check if any documents were found
     if len(documents) == 0:
