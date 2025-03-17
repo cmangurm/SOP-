@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.llms.ollama import Ollama
@@ -47,6 +48,5 @@ def main():
     )
     print("Ingestion complete! Your documents are now indexed.")
 
-# This is the important part that was missing
 if __name__ == "__main__":
     main()
