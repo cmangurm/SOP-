@@ -4,6 +4,7 @@ from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.llms.ollama import Ollama
 from llama_index.core import StorageContext
 from llama_index.vector_stores.chroma import ChromaVectorStore
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 import chromadb
 
 def main():
@@ -37,10 +38,10 @@ def main():
     vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
     storage_context = StorageContext.from_defaults(vector_store=vector_store)
     
-    # Set up LLM (used for text splitting decisions)
+    # Set up LLM and embedding model
     Settings.llm = Ollama(model="mistral")
     Settings.chunk_size = 512  # Adjust based on your documents
-    Settings.embed_model = "local"  # Use a local embedding model instead of OpenAI
+    Settings.embed_model = HuggingFaceEmbedding(model_name="all-MiniLM-L6-v2")
     
     # Create index
     print("Creating index...")
