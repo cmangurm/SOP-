@@ -40,6 +40,7 @@ def main():
     # Set up LLM (used for text splitting decisions)
     Settings.llm = Ollama(model="mistral")
     Settings.chunk_size = 512  # Adjust based on your documents
+    Settings.embed_model = "local"  # Use a local embedding model instead of OpenAI
     
     # Create index
     print("Creating index...")
